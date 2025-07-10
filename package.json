@@ -6,11 +6,35 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "commit": "git-cz"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "lint-staged": {
+    "*.{md,json}": [
+      "prettier --cache --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix",
+      "prettier --cache --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --cache --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --cache --parser=typescript --write"
+    ]
+  },
   "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228",
   "dependencies": {
     "@eslint/js": "^9.30.1",
@@ -26,6 +50,13 @@
     "vue": "^3.5.17"
   },
   "devDependencies": {
-    "eslint-plugin-prettier": "^5.5.1"
+    "eslint-plugin-prettier": "^5.5.1",
+    "husky": "^9.1.7",
+    "lint-staged": "15.2.7",
+    "prettier": "3.3.2",
+    "@commitlint/cli": "19.3.0",
+    "@commitlint/config-conventional": "19.2.2",
+    "commitizen": "4.3.0",
+    "cz-git": "1.9.3"
   }
 }
