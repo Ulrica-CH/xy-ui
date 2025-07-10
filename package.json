@@ -1,0 +1,31 @@
+{
+  "name": "xy-ui",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228",
+  "dependencies": {
+    "@eslint/js": "^9.30.1",
+    "@xy-ui/components": "workspace:*",
+    "@xy-ui/theme": "workspace:*",
+    "@xy-ui/utils": "workspace:*",
+    "eslint": "^9.30.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-vue": "^10.3.0",
+    "globals": "^16.3.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.36.0",
+    "vue": "^3.5.17"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^5.5.1"
+  }
+}
