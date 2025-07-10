@@ -63,6 +63,8 @@ export default tseslint.config(
     files: ['**/*.{ts,tsx,vue}'],
     rules: {
       'no-console': 'error',
+      '@typescript-eslint/no-explicit-any': 'off',
+      'prettier/prettier': 'off',
     },
   },
   /** prettier 配置 */

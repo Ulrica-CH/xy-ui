@@ -1,13 +1,9 @@
-<script lang="ts" setup name="XyButton">
-console.log(1)
-
-const a = 1
-
-const b = 'o'
+<script lang="ts" setup>
+defineOptions({ name: 'XyButton' })
 </script>
 
 <template>
-  <div>XyButton</div>
+  <button style="color: red; background-color: blue">123</button>
 </template>
 
 <style scoped></style>
