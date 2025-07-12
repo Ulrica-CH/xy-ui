@@ -142,3 +142,20 @@ Primary.args = { content: 'cs', type: 'primary' } as any
 export const Default: Story = Template.bind({})
 export default meta
 ```
+
+## Icon
+
+- 使用Font Awesome 图标库
+  - pnpm add @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons
+    @fortawesome/vue-fontawesome
+  - library.add(fas)
+    - library是 Font Awesome 的核心库对象
+    - 用来管理所有注册的图标
+    - fas指的是实体图标库 还有 far 空心 fab 品牌 fal 细线 fad 双色
+  - 设置 icon:text
+  - https://docs.fontawesome.com/
+
+## inheritAttrs: false
+
+- 不继承父组件属性到跟组件
+- 配合 v-bind=$attrs 自定义加到需要的标签上

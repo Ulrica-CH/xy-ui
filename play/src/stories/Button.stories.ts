@@ -21,6 +21,9 @@ const meta = {
         type: 'boolean',
       },
     },
+    icon: {
+      control: { type: 'text' },
+    },
   },
 } satisfies Meta<typeof XyButton>
 type Story = StoryObj<typeof meta>

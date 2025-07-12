@@ -36,6 +36,9 @@
   "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228",
   "dependencies": {
     "@eslint/js": "^9.30.1",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vitejs/plugin-vue-jsx": "^5.0.1",
     "@xy-ui/components": "workspace:*",
@@ -48,6 +51,7 @@
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-vue": "^10.3.0",
     "globals": "^16.3.0",
+    "lodash-es": "^4.17.21",
     "sass": "^1.89.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.36.0",
@@ -58,6 +62,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
+    "@types/lodash-es": "^4.17.12",
     "@vue/test-utils": "^2.4.6",
     "commitizen": "4.3.0",
     "cz-git": "1.9.3",

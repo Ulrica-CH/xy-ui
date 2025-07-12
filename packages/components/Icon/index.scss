@@ -1,0 +1,18 @@
+.xy-icon {
+    --xy-icon-color: inherit;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    fill: currentColor;
+    color: var(--xy-icon-color);
+    font-size: inherit;
+}
+
+@each $val in primary, info, success, warning, danger {
+    .xy-icon--#{$val} {
+        --xy-icon-color: var(--xy-color-$(
+                val)
+        );
+}
+}
