@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from 'eslint-plugin-storybook'
+
 import eslint from '@eslint/js'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
@@ -6,33 +9,23 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 export default tseslint.config(
   {
     ignores: ['node_modules', 'dist', 'public'],
-  },
-
-  /** js推荐配置 */
-  eslint.configs.recommended,
-  /** ts推荐配置 */
-  ...tseslint.configs.recommended,
-  /** vue推荐配置 */
-  ...eslintPluginVue.configs['flat/recommended'],
-
-  /** javascript 规则 */
+  } /** js推荐配置 */,
+  eslint.configs.recommended /** ts推荐配置 */,
+  ...tseslint.configs.recommended /** vue推荐配置 */,
+  ...eslintPluginVue.configs['flat/recommended'] /** javascript 规则 */,
   {
     files: ['**/*.{js,mjs,cjs,vue}'],
     rules: {
       'no-console': 'error',
     },
-  },
-
-  /** 配置全局变量 */
+  } /** 配置全局变量 */,
   {
     languageOptions: {
       globals: {
         ...globals.browser,
       },
     },
-  },
-
-  /** vue 规则 */
+  } /** vue 规则 */,
   {
     files: ['**/*.vue'],
     languageOptions: {
@@ -56,9 +49,7 @@ export default tseslint.config(
       ],
       'vue/multi-word-component-names': 'off',
     },
-  },
-
-  /** typescript 规则 */
+  } /** typescript 规则 */,
   {
     files: ['**/*.{ts,tsx,vue}'],
     rules: {
@@ -66,9 +57,9 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'off',
       'prettier/prettier': 'off',
     },
-  },
-  /** prettier 配置 */
+  } /** prettier 配置 */,
   eslintPluginPrettierRecommended,
+  storybook.configs['flat/recommended'],
 )
 
 // https://juejin.cn/post/7402696141495779363?searchId=20250710165854537AF49EEEAF7F7A34DB#heading-11
