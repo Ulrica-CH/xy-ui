@@ -77,11 +77,75 @@ chmod 755 init.shell
 
 ## 测试
 
-- 是用 vitest 配合 @vitejs/plugin-vue
+- 是用 vitest 配合 @vue/test-utils
 - 注意对应版本
 - TDD 测试驱动开发
   - 先写测试，再写实现，最后重构，用自动化测试保障组件和逻辑的正确性
 - 测使用例可以用 ai 来完编写
+- 核心函数
+  - it/test 定义一个具体的测试用例
+  - describe 提供测试的结构和分组
+  - expect 用来验证测试结果是否符合预期
+- @vue/test-utils
+  - mount挂载组件
+  - wrapper 是 mount 返回的对象，它包装了 Vue 组件实例，提供了很多测试方法
+    - .props .classes .emitted等等
+
+```TypeScript
+import { describe, it, expect } from 'vitest'
+import { mount } from '@vue/test-utils'
+import Button from './Button.vue'
+
+describe('Button.vue', () => {
+  it('should render with correct props', () => {
+    // mount 挂载组件
+    const wrapper = mount(Button, {
+      props: {
+        type: 'primary',
+        size: 'large',
+        disabled: true
+      },
+      slots: {
+        default: 'Click me'
+      }
+    })
+
+    // 使用 wrapper 进行测试
+    expect(wrapper.element.tagName).toBe('BUTTON')
+    expect(wrapper.text()).toBe('Click me')
+    expect(wrapper.props('type')).toBe('primary')
+    expect(wrapper.classes()).toContain('xy-button--primary')
+    expect(wrapper.classes()).toContain('xy-button--large')
+    expect(wrapper.attributes('disabled')).toBeDefined()
+  })
+
+  it('should handle click events', async () => {
+    const wrapper = mount(Button)
+
+    // 触发点击事件
+    await wrapper.trigger('click')
+
+    // 检查事件是否被触发
+    expect(wrapper.emitted('click')).toHaveLength(1)
+  })
+
+  it('should update when props change', async () => {
+    const wrapper = mount(Button, {
+      props: { type: 'primary' }
+    })
+
+    // 初始状态
+    expect(wrapper.classes()).toContain('xy-button--primary')
+
+    // 更新 props
+    await wrapper.setProps({ type: 'success' })
+
+    // 检查更新后的状态
+    expect(wrapper.classes()).toContain('xy-button--success')
+    expect(wrapper.classes()).not.toContain('xy-button--primary')
+  })
+})
+```
 
 ## 需求分析 提示词
 
@@ -99,10 +163,20 @@ chmod 755 init.shell
 - pnpm dlx storybook@latest init
 - 导入组件,默认导出 meta
 - 在导出示例(Primary Default)
+- within 作用域查询
+  - 用于在特定的 DOM 元素内查找其他元素
+- canvas
+  - Storybook 渲染组件的容器元素
+  - canvasElement 是 Storybook 渲染组件的根元素
+- play
+  - 交互测试
+- @storybook/test是基于 vitest 的,里面用到的方法断言也就都是 vitest 的
+  - https://cn.vitest.dev/api/expect.html#tohavebeencalled
 
 ```typescript
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { XyButton } from '@xy-ui/core'
+import { fn, within, userEvent, expect } from '@storybook/test'
 const meta = {
   component: XyButton,
   title: 'Example/XyButton',
@@ -124,6 +198,20 @@ const meta = {
         type: 'boolean',
       },
     },
+    icon: {
+      control: { type: 'text' },
+    },
+    loading: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    args: { onClick: fn() },
   },
 } satisfies Meta<typeof XyButton>
 type Story = StoryObj<typeof meta>
@@ -139,9 +227,38 @@ const Template = (args: any) => ({
 
 export const Primary: Story = Template.bind({})
 Primary.args = { content: 'cs', type: 'primary' } as any
-export const Default: Story = Template.bind({})
+// export const Default: Story = Template.bind({})
+export const Default: Story & { args: { content: string } } = {
+  argTypes: {
+    content: {
+      control: { type: 'text' },
+    },
+  },
+  args: {
+    type: 'default',
+    content: 'Button',
+    onClick: fn(),
+  },
+  render: (args) => ({
+    components: { XyButton },
+    setup() {
+      return { args }
+    },
+    template: `<xy-button @click="handleClick" v-bind="args">{{args.content}}</xy-button>`,
+  }),
+  play: async ({ canvasElement, args, step }) => {
+    const canvas = within(canvasElement)
+    await step('click button', async () => {
+      await userEvent.tripleClick(canvas.getByRole('button'))
+    })
+
+    await expect(args.onClick).toHaveBeenCalled()
+  },
+}
 export default meta
 ```
+
+-
 
 ## Icon
 
