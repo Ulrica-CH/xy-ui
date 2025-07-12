@@ -1,0 +1,76 @@
+@import './reset.css';
+
+:root {
+  /* colors */
+  --xy-color-white: #ffffff;
+  --xy-color-black: #000000;
+  --xy-bg-color: #ffffff;
+  --xy-bg-color-page: #f2f3f5;
+  --xy-bg-color-overlay: #ffffff;
+  --xy-text-color-primary: #303133;
+  --xy-text-color-regular: #606266;
+  --xy-text-color-secondary: #909399;
+  --xy-text-color-placeholder: #a8abb2;
+  --xy-text-color-disabled: #c0c4cc;
+  --xy-border-color: #dcdfe6;
+  --xy-border-color-light: #e4e7ed;
+  --xy-border-color-lighter: #ebeef5;
+  --xy-border-color-extra-light: #f2f6fc;
+  --xy-border-color-dark: #d4d7de;
+  --xy-border-color-darker: #cdd0d6;
+  --xy-fill-color: #f0f2f5;
+  --xy-fill-color-light: #f5f7fa;
+  --xy-fill-color-lighter: #fafafa;
+  --xy-fill-color-extra-light: #fafcff;
+  --xy-fill-color-dark: #ebedf0;
+  --xy-fill-color-darker: #e6e8eb;
+  --xy-fill-color-blank: #ffffff;
+  
+  /* 定义 SCSS 变量用于循环 */
+  $colors: (
+    primary: #409eff,
+    success: #67c23a,
+    warning: #e6a23c,
+    danger: #f56c6c,
+    info: #909399
+  );
+  
+  /* 使用 SCSS 循环生成 CSS 变量 */
+  @each $val, $color in $colors {
+    --xy-color-#{$val}: #{$color};
+    @for $i from 3 through 9 {
+      --xy-color-#{$val}-light-#{$i}: mix(#fff, $color, $i * 10%);
+    }
+    --xy-color-#{$val}-dark-2: mix(#000, $color, 20%);
+  }
+
+  /* border */
+  --xy-border-width: 1px;
+  --xy-border-style: solid;
+  --xy-border-color-hover: var(--xy-text-color-disabled);
+  --xy-border: var(--xy-border-width) var(--xy-border-style) var(--xy-border-color);
+  --xy-border-radius-base: 4px;
+  --xy-border-radius-small: 2px;
+  --xy-border-radius-round: 20px;
+  --xy-border-radius-circle: 100%;
+
+  /*font*/
+  --xy-font-size-extra-large: 20px;
+  --xy-font-size-large: 18px;
+  --xy-font-size-medium: 16px;
+  --xy-font-size-base: 14px;
+  --xy-font-size-small: 13px;
+  --xy-font-size-extra-small: 12px;
+  --xy-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
+  --xy-font-weight-primary: 500;
+
+  /*disabled*/
+  --xy-disabled-bg-color: var(--xy-fill-color-light);
+  --xy-disabled-text-color: var(--xy-text-color-placeholder);
+  --xy-disabled-border-color: var(--xy-border-color-light);
+
+  /*animation*/
+  --xy-transition-duration: 0.4s;
+  --xy-transition-duration-fast: 0.2s;
+}
