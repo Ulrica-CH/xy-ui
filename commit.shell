@@ -1,0 +1,61 @@
+#!/bin/zsh
+
+# 自动化提交和推送脚本
+# 使用方法: 
+#   ./commit-and-push.sh              # 交互式提交
+#   ./commit-and-push.sh "提交信息"    # 直接提交
+#   ./commit-and-push.sh --quick      # 快速提交（跳过交互）
+
+set -e  # 遇到错误时停止执行
+
+echo "🔄 开始自动化提交流程..."
+
+# 检查是否有未跟踪的文件或修改
+if [[ -z $(git status --porcelain) ]]; then
+    echo "ℹ️  没有需要提交的更改"
+    exit 0
+fi
+
+# 步骤1: 添加所有文件到暂存区
+echo "📝 添加文件到暂存区..."
+git add .
+
+# 检查是否有暂存的更改
+if [[ -z $(git diff --cached --name-only) ]]; then
+    echo "ℹ️  没有暂存的更改"
+    exit 0
+fi
+
+# 步骤2: 提交
+echo "💬 开始提交流程..."
+
+if [[ "$1" == "--quick" ]]; then
+    # 快速提交模式，使用默认格式
+    echo "⚡ 快速提交模式"
+    read -p "请输入提交类型 (feat/fix/docs/style/refactor/test/chore): " commit_type
+    read -p "请输入提交描述: " commit_desc
+    git commit -m "${commit_type}: ${commit_desc}"
+elif [[ -n "$1" && "$1" != "--quick" ]]; then
+    # 如果提供了提交信息参数，直接使用
+    echo "使用提供的提交信息: $1"
+    git commit -m "$1"
+else
+    # 交互式提交，用户需要手动操作
+    echo "🔄 启动交互式提交..."
+    echo "请按照 git-cz 的提示完成提交信息填写"
+    npm run commit
+fi
+
+# 检查提交是否成功
+if [[ $? -eq 0 ]]; then
+    echo "✅ 提交成功"
+    
+    # 步骤3: 推送到远程仓库
+    echo "🚀 推送到远程仓库..."
+    git push
+    
+    echo "✅ 自动化提交流程完成！"
+else
+    echo "❌ 提交失败，跳过推送"
+    exit 1
+fi
