@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref, inject } from 'vue'
+// 后期可以改成自己封装的 hooks 库
 import { throttle } from 'lodash-es'
 import ButtonProps, { ButtonEmits, ButtonInstance } from './type'
 import XyIcon from '../Icon'
+import { BUTTON_GROUP_CTX_KEY } from './constants'
+const buttonGroupCtx = inject(BUTTON_GROUP_CTX_KEY)
 defineOptions({ name: 'XyButton' })
 const props = withDefaults(defineProps<ButtonProps>(), {
   tag: 'button',
@@ -14,6 +17,12 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 const emits = defineEmits<ButtonEmits>()
 const _ref = ref<HTMLButtonElement>()
 const slots = defineSlots()
+
+const size = computed(() => buttonGroupCtx?.size ?? props?.size ?? '')
+const type = computed(() => buttonGroupCtx?.type ?? props?.type ?? '')
+const disabled = computed(
+  () => buttonGroupCtx?.disabled ?? (props?.disabled || false),
+)
 const handleClick = (e: MouseEvent) => {
   emits('click', e)
 }
@@ -54,7 +63,7 @@ defineExpose<ButtonInstance>({
   >
     <template v-if="loading">
       <slot name="loading">
-        <er-icon
+        <XyIcon
           class="loading-icon"
           :icon="loadingIcon ?? 'spinner'"
           :style="iconStyle"

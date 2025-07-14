@@ -1,5 +1,5 @@
 import type { Plugin } from 'vue'
-import { XyButton, XyIcon } from '@xy-ui/components'
+import { XyButton, XyIcon, XyButtonGroup } from '@xy-ui/components'
 
-export { XyButton, XyIcon }
-export default [XyButton, XyIcon] as Plugin[]
+export { XyButton, XyIcon, XyButtonGroup }
+export default [XyButton, XyIcon, XyButtonGroup] as Plugin[]

@@ -276,3 +276,15 @@ export default meta
 
 - 不继承父组件属性到跟组件
 - 配合 v-bind=$attrs 自定义加到需要的标签上
+
+## ButtonGroup
+
+- size 等属性可以 provide/inject
+
+## BEM 规范
+
+## 项目打包
+
+- vite
+- rollup
+- Turbopack
