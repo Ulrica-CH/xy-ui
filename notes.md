@@ -287,4 +287,56 @@ export default meta
 
 - vite
 - rollup
+  - 关于 vue 处理问题
+    - "rollup-plugin-vue不支持外部导入 types,改用unplugin-vue
+    - 通过 output 的 manualChunks可以自定义分包,这个分包和多入口分包是不同概念
+    - rollup-plugin-typescript2更完善相对于@rollup/plugin-typescript
+    - rollup大多数功能都需要借助插件来实现,切注意插件调用顺序
+    - 一般的 ts 处理插件要依赖 tsconfig.json,没指定会使用根目录,这个当时不知道,
+      找了半天天问题
 - Turbopack
+
+## 关于package.json里的一些字段
+
+- "main": "./dist/index.js"
+  - 指定CommonJS 入口文件（Node.js、老的打包工具优先用它）。
+- "module": "./dist/index.js"
+  - 指定ES Module 入口文件（现代打包工具优先用它）
+  - 有些工具会优先用 "module" 字段来获得 tree-shaking 更好的 ESM 版本
+- exports
+  - 精确控制包的导出内容和路径，是 Node.js 和现代打包工具推荐的做法
+  - "." 代表包的主入口（import '@xy-ui/core'）。
+    - "import"：ESM 入口
+    - "require"：CommonJS 入口
+    - "types"：类型声明入口（TypeScript 用）-"./dist/" 允许用户 import
+      '@xy-ui/core/dist/xxx' 访问 dist 目录下的文件
+
+```json
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/types/core/index.d.ts"
+    },
+    "./dist/": {
+      "import": "./dist/",
+      "require": "./dist/"
+    }
+  }
+```
+
+- Node.js 解析包时，优先看 "exports"，再看 "main" 和 "module"
+- TypeScript 会用 "types" 字段（如果有），否则会看 "exports" 里的 "types"。
+- type
+  - .js 文件会被当作 ES Module（即 import/export 语法）
+  - .cjs 文件会被当作 CommonJS。
+  - 如果没有 type：module
+    - .js 文件会被当作 CommonJS（即 require/module.exports）。
+    - .mjs 文件会被当作 ES Module。
+
+```javascript
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const componentsDir = resolve(__dirname, '../components')
+```

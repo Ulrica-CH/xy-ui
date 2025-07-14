@@ -1,7 +1,5 @@
-import type { App, Plugin } from 'vue'
-
+import { App, Plugin } from 'vue'
 type SFCWithInstall<T> = T & Plugin
-
 /**
  * 安装组件
  * app.use时就是调用install方法

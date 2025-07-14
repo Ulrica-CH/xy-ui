@@ -4,6 +4,7 @@ import type { ButtonType, ButtonSize } from './type'
 
 import Icon from '../Icon'
 import XyButton from './Button.vue'
+// import { XyButton } from '../../core/dist'
 import XyButtonGroup from './ButtonGroup.vue'
 
 describe('XyButton.vue', () => {

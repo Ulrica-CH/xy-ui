@@ -26,7 +26,10 @@ const disabled = computed(
 const handleClick = (e: MouseEvent) => {
   emits('click', e)
 }
-const handleThrottleClick = throttle(handleClick, props.throttleDelay)
+const handleThrottleClick: (e: MouseEvent) => void = throttle(
+  handleClick,
+  props.throttleDelay,
+)
 const iconStyle = computed(() => ({
   marginRight: slots.default ? '6px' : '0px',
 }))
@@ -83,5 +86,5 @@ defineExpose<ButtonInstance>({
 </template>
 
 <style scoped lang="scss">
-@import './style.scss';
+@use './style.scss';
 </style>

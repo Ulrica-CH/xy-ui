@@ -56,6 +56,7 @@ export default tseslint.config(
       'no-console': 'error',
       '@typescript-eslint/no-explicit-any': 'off',
       'prettier/prettier': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
   } /** prettier 配置 */,
   eslintPluginPrettierRecommended,
