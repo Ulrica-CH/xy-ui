@@ -9,10 +9,11 @@
     "dev": "pnpm --filter @xy-ui/play dev",
     "prepare": "husky",
     "commit": "git-cz",
-    "test": "pnpm --filter @xy-ui/components test",
+    "docs:build": "pnpm build && pnpm --filter @xy-ui/docs build",
     "story": "pnpm --filter @xy-ui/play storybook",
     "release": "pnpm --filter xy-ui release",
-    "build": "pnpm --filter xy-ui build"
+    "build": "pnpm --filter xy-ui build",
+    "test": "pnpm --filter @xy-ui/components test"
   },
   "keywords": [],
   "author": "",
