@@ -369,5 +369,16 @@ const componentsDir = resolve(__dirname, '../components')
     - release-it 命令行交互式提交 (先设置分支)
 
 ## 分包问题
+
 - 拆分 Icon 和 Button 后
 - Icon chunkjs从 Button chunkjs 里面导入的函数报错显示未找到
+
+## Node 问题
+
+- 问题描述:使用 husky 提交时候报错 eslint --fix没有新语法
+- 解决思路
+  - 查看node 版本 node -p "typeof structuredClone",输出是 function，说明 Node 环
+    境没问题。如果不是，说明你终端用的 Node 不是 v20
+  - 检查本地和全局 ESLint npm ls -g --depth=0
+  - 检查 husky 运行时候 node echo "Node version in pre-commit: $(node -v)"
+  - 最终发现是 husky 的环境用的 node16,可以使用 volta 固定 vola pin node@20
