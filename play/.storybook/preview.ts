@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/vue3-vite'
-import '@xy-ui/core/dist/index.css'
+import 'xy-ui/dist/index.css'
 const preview: Preview = {
   parameters: {
     controls: {

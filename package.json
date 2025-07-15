@@ -1,5 +1,5 @@
 {
-  "name": "xy-ui",
+  "name": "xy-ui-mono",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -11,8 +11,8 @@
     "commit": "git-cz",
     "test": "pnpm --filter @xy-ui/components test",
     "story": "pnpm --filter @xy-ui/play storybook",
-    "release": "pnpm --filter @xy-ui/core release",
-    "build": "pnpm --filter @xy-ui/core build"
+    "release": "pnpm --filter xy-ui release",
+    "build": "pnpm --filter xy-ui build"
   },
   "keywords": [],
   "author": "",
@@ -37,15 +37,11 @@
   },
   "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228",
   "dependencies": {
-    "@eslint/js": "^9.30.1",
+    "@eslint/js": "^9.31.0",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
-    "@types/lodash-es": "^4.17.12",
-    "@vitejs/plugin-vue": "^6.0.0",
-    "@vitejs/plugin-vue-jsx": "^5.0.1",
     "@xy-ui/components": "workspace:*",
-    "@xy-ui/core": "workspace:*",
     "@xy-ui/docs": "workspace:*",
     "@xy-ui/play": "workspace:*",
     "@xy-ui/theme": "workspace:*",
@@ -57,14 +53,17 @@
     "lodash-es": "^4.17.21",
     "sass": "^1.89.2",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.36.0",
+    "typescript-eslint": "^8.37.0",
     "vite": "^7.0.4",
-    "vitest": "^3.2.4",
-    "vue": "^3.5.17"
+    "vue": "^3.5.17",
+    "xy-ui": "workspace:*"
   },
   "devDependencies": {
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
+    "@types/lodash-es": "^4.17.12",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "@vitejs/plugin-vue-jsx": "^5.0.1",
     "@vue/test-utils": "^2.4.6",
     "commitizen": "4.3.0",
     "cz-git": "1.9.3",
@@ -73,9 +72,7 @@
     "lint-staged": "15.2.7",
     "prettier": "3.3.2",
     "release-it": "^19.0.3",
-    "rimraf": "^6.0.1"
-  },
-  "volta": {
-    "node": "20.19.3"
+    "rimraf": "^6.0.1",
+    "vitest": "^3.2.4"
   }
 }

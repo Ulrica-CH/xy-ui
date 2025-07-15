@@ -1,4 +1,4 @@
-import Icon from './index.vue'
+import Icon from './Icon.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { withInstall } from '@xy-ui/utils'

@@ -34,7 +34,7 @@
 //     //   "@xy-ui/utils": ["packages/utils/index"],
 //     //   "@xy-ui/components": ["packages/components/index"],
 //     //   "@xy-ui/theme": ["packages/theme/index"],
-//     //   "@xy-ui/core": ["packages/core/index"]
+//     //   "xy-ui": ["packages/core/index"]
 //     // }
 //   },
 //   "include": [

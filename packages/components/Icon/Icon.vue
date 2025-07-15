@@ -11,8 +11,8 @@ defineOptions({
 
 const props = defineProps<IconProps>()
 
-const filterProps = computed<Record<string, any>>(() =>
-  omit(props, ['type', 'color']),
+const filterProps = computed(
+  () => omit(props, ['type', 'color']) as Omit<IconProps, 'type' | 'color'>,
 )
 const customStyles = computed(() => ({ color: props.color ?? void 0 }))
 </script>
@@ -29,5 +29,5 @@ const customStyles = computed(() => ({ color: props.color ?? void 0 }))
 </template>
 
 <style scoped lang="scss">
-@use './index.scss';
+@use './style.scss';
 </style>

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import { XyButton } from '@xy-ui/core'
+import { XyButton } from 'xy-ui'
 import { fn, within, userEvent, expect } from '@storybook/test'
 
 const meta = {

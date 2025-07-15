@@ -23,7 +23,7 @@ chmod 755 init.shell
 ## 创建组件 play 环境
 
 - vite创建项目 pnpm create vite play --template vue-ts
-- import @xy-ui/core
+- import xy-ui
 - 去掉和主包重复的依赖
 
 ## 组件注册流程
@@ -175,7 +175,7 @@ describe('Button.vue', () => {
 
 ```typescript
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import { XyButton } from '@xy-ui/core'
+import { XyButton } from 'xy-ui'
 import { fn, within, userEvent, expect } from '@storybook/test'
 const meta = {
   component: XyButton,
@@ -305,11 +305,11 @@ export default meta
   - 有些工具会优先用 "module" 字段来获得 tree-shaking 更好的 ESM 版本
 - exports
   - 精确控制包的导出内容和路径，是 Node.js 和现代打包工具推荐的做法
-  - "." 代表包的主入口（import '@xy-ui/core'）。
+  - "." 代表包的主入口（import 'xy-ui'）。
     - "import"：ESM 入口
     - "require"：CommonJS 入口
     - "types"：类型声明入口（TypeScript 用）-"./dist/" 允许用户 import
-      '@xy-ui/core/dist/xxx' 访问 dist 目录下的文件
+      'xy-ui/dist/xxx' 访问 dist 目录下的文件
 
 ```json
   "exports": {
@@ -367,3 +367,7 @@ const componentsDir = resolve(__dirname, '../components')
   - 自动化工具
     - rimraf 删除 dist
     - release-it 命令行交互式提交 (先设置分支)
+
+## 分包问题
+- 拆分 Icon 和 Button 后
+- Icon chunkjs从 Button chunkjs 里面导入的函数报错显示未找到

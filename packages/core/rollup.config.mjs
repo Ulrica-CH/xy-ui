@@ -6,6 +6,7 @@ import postcss from 'rollup-plugin-postcss'
 
 import { readdirSync } from 'fs'
 import { map, filter } from 'lodash-es'
+
 /** 处理需要分包的Components */
 function getDirectoriesSync(basePath) {
   const entries = readdirSync(basePath, { withFileTypes: true })
@@ -14,8 +15,8 @@ function getDirectoriesSync(basePath) {
     (entry) => entry.name,
   )
 }
-/** 移动类型文件到 types */
-export default {
+
+const config = {
   input: './index.ts',
   output: {
     dir: './dist',
@@ -24,7 +25,9 @@ export default {
       if (id.includes('node_modules')) return 'vendor'
       if (id.includes('/packages/utils/')) return 'utils'
       for (const item of getDirectoriesSync('../components')) {
-        if (id.includes(`/packages/components/${item}/`)) return item
+        if (id.includes(`/packages/components/${item}/`) && item !== 'Icon')
+          return item
+        // if (id.includes(`/packages/components/${item}/`)) return item
       }
     },
   },
@@ -47,3 +50,5 @@ export default {
     'lodash-es',
   ],
 }
+
+export default config
