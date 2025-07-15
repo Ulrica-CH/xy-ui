@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/xy-ui/',
   title: 'xy-ui',
   description: 'Vue3 + TypeScrip 组件库',
   themeConfig: {
