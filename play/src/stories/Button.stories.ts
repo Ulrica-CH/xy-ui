@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { XyButton } from '@xy-ui/core'
 import { fn, within, userEvent, expect } from '@storybook/test'
-import '@xy-ui/core/dist/index.css'
+
 const meta = {
   component: XyButton,
   title: 'Example/XyButton',
+  tags: ['autodocs'],
+
   argTypes: {
     type: {
       control: {

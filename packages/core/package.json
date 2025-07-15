@@ -16,10 +16,19 @@
       "require": "./dist/"
     }
   },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "./dist/index.css",
+    "./dist/theme/*.css"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c rollup.config.js",
-    "buildV": "vite build"
+    "build": "rimraf dist && rollup -c rollup.config.js && node move-types.js",
+    "buildV": "vite build",
+    "move-types": "node move-types.js",
+    "release": "release-it"
   },
   "keywords": [],
   "author": "",

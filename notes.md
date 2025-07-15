@@ -340,3 +340,30 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const componentsDir = resolve(__dirname, '../components')
 ```
+
+- files
+  - 用于指定哪些文件应该被包含在 npm 包中，当用户安装你的包时，只有这些文件会被
+    下载
+- sideEffects
+  - 用于告诉打包工具（如 Webpack、Rollup）哪些文件有副作用，哪些文件是纯函数,有
+    副作用不能被 tree shaking
+
+## 版本管理
+
+- 语义化版本
+  - 主版本.次版本.修订号
+  - 主版本号(MAJOR):破坏性更新,做了不兼容的API修改,可能需要以来代码修改
+  - 次版本号(MINOR):增加了向下兼容的功能
+  - 修订号(PATCH):增加了向下兼容的问题修正,修复了一些问题,没有引进新功能
+  - 预发布版本标识符(alpha,beta,rc) 通常用于待发布,测试阶段
+  - 构建元数据,可用来提供有关构建的附加信息
+
+## 发布包
+
+- nrm 源切换工具
+- 注册登录 npm
+- npm publish
+  - 注意版本号
+  - 自动化工具
+    - rimraf 删除 dist
+    - release-it 命令行交互式提交 (先设置分支)

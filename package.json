@@ -10,7 +10,9 @@
     "prepare": "husky",
     "commit": "git-cz",
     "test": "pnpm --filter @xy-ui/components test",
-    "storybook": "pnpm --filter @xy-ui/play storybook"
+    "story": "pnpm --filter @xy-ui/play storybook",
+    "release": "pnpm --filter @xy-ui/core release",
+    "build": "pnpm --filter @xy-ui/core build"
   },
   "keywords": [],
   "author": "",
@@ -39,6 +41,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@types/lodash-es": "^4.17.12",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vitejs/plugin-vue-jsx": "^5.0.1",
     "@xy-ui/components": "workspace:*",
@@ -52,7 +55,6 @@
     "eslint-plugin-vue": "^10.3.0",
     "globals": "^16.3.0",
     "lodash-es": "^4.17.21",
-    "@types/lodash-es": "^4.17.12",
     "sass": "^1.89.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.36.0",
@@ -69,7 +71,9 @@
     "eslint-plugin-prettier": "^5.5.1",
     "husky": "^9.1.7",
     "lint-staged": "15.2.7",
-    "prettier": "3.3.2"
+    "prettier": "3.3.2",
+    "release-it": "^19.0.3",
+    "rimraf": "^6.0.1"
   },
   "volta": {
     "node": "20.19.3"
