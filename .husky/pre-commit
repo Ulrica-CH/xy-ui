@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
-echo "Node version in pre-commit: $(node -v)"
+
 . "$(dirname -- "$0")/_/husky.sh"
 
 # pnpm lint
-# npx lint-staged
+echo "Node version in pre-commit: $(node -v)"
+npx lint-staged
